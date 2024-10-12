@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+
+    <link rel="stylesheet" href="./../css/index.css">
+
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <!-- Navigation Bar -->
+    <nav>
+            <div class="nav-logo-menu-bar">
+            <div class="logo">
+                <img src="./../assets/tmdb_icon.png" alt="main logo" />
+            </div>
+            <div class="menu-bar" onclick="">
+                <img src="./../assets/icon-menu.png" style="width: 35px;" alt="icon menu"/>
+            </div>
+            </div>
+            <!--** Hidden Mobile **-->
+            <div class="nav-menu" id="nav-menu">
+                <div class="close-menu-icon" onclick="">
+                    <img src="./../assets/icon-close-menu.png" style="width: 50px; height: 40px;" alt="close icon menu" />
+                </div>
+                <!-- Nav Items -->
+                <div class="nav-menu-item-container">
+                    <div class="home nav-item" tabindex="1">
+                        <a href="./index.html">Home</a>
+                    </div>
+                    <div class="genres nav-item" tabindex="2">
+                        <a href="./genres.html">Genres</a>
+                    </div>
+                    <div class="nav-item" tabindex="3">
+                        <a href="./favorites.html">Favorites</a>
+                    </div>
+                    <!-- About -->
+                    <div class="nav-item" tabindex="4">
+                        <a href="./about.html">About</a>
+                    </div>
+                </div>
+            </div>
+            <!--** End Hidden Mobile **-->
+    </nav>
+    <!-- Images Carousel -->
+    <header>
+        <div class="header-black-overlay"></div>
+        <div class="header-movie-details">
+            <h1 class="header-movie-title"></h1>
+            <div class="flex-align-center">
+                <span class="header-movie-year"></span>
+                <i class="fa-solid fa-circle " style="color: #ffffff;" aria-hidden="true"></i>
+                <span class="header-movie-genre"></span>
+            </div>
+            <p class="header-movie-description"></p>
+        </div>
+        <div class="header-carousel carousel"></div>
+    </header>
+    <div class="pagination-container">
+        <ul class="pagination">
+            <li>
+                <a id="pagi-prev" class="pagi-button">Prev</a>
+            </li>
+            <li>
+                <a class="pagi-num">1</a>
+            </li>
+            <li>
+                <a id="pagi-next" class="pagi-button">Next</a>
+            </li>
+        </ul>
+    </div>
+    <main class="main-container">
+        <div class="search-container">
+            <div id="poda">
+            <div class="glow"></div>
+            <div class="darkBorderBg"></div>
+            <div class="darkBorderBg"></div>
+            <div class="darkBorderBg"></div>
+            <div class="white"></div>
+            <div class="border"></div>
+            <div id="main">
+                <input placeholder="Search..." type="text" name="text" class="input" />
+                <div id="input-mask"></div>
+                <div id="pink-mask"></div>
+                <div id="search-icon">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    height="24"
+                    fill="none"
+                    class="feather feather-search"
+                >
+                    <circle stroke="url(#search)" r="8" cy="11" cx="11"></circle>
+                    <line
+                    stroke="url(#searchl)"
+                    y2="16.65"
+                    y1="22"
+                    x2="16.65"
+                    x1="22"
+                    ></line>
+                    <defs>
+                    <linearGradient gradientTransform="rotate(50)" id="search">
+                        <stop stop-color="#f8e7f8" offset="0%"></stop>
+                        <stop stop-color="#b6a9b7" offset="50%"></stop>
+                    </linearGradient>
+                    <linearGradient id="searchl">
+                        <stop stop-color="#b6a9b7" offset="0%"></stop>
+                        <stop stop-color="#837484" offset="50%"></stop>
+                    </linearGradient>
+                    </defs>
+                </svg>
+                </div>
+            </div>
+            </div>
+        </div>
+        <article id="cards-grid">
+            <div class="movie-card" data-id="123124" style="background-image: url('https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg');">
+                <div class="card-details hidden">
+                    <h3>Hello</h3>
+                    <p>2024</p>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet expedita in ipsam iure incidunt ex provident corporis, voluptatem nisi, eaque pariatur mollitia deserunt molestias facere iste non soluta sed aspernatur.</p>
+                </div>
+            </div>
+            <div class="movie-card"></div>
+            <div class="movie-card"></div>
+            <div class="movie-card"></div>
+            <div class="movie-card"></div>
+        </article>
+    </main>
+    <div id="movie-popup" class="invisible">
+        <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+        <div class="crew-container"></div>
+    </div>
+    <div class="pagination-container">
+        <ul class="pagination">
+            <li>
+                <a id="pagi-prev" class="pagi-button">Prev</a>
+            </li>
+            <li>
+                <a class="pagi-num">1</a>
+            </li>
+            <li>
+                <a id="pagi-next" class="pagi-button">Next</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <script type="module" src="./../javascript/main.js"></script>
+</body>
+</html>
