@@ -1,29 +1,38 @@
 import moviesService from './movies.services.js'
+import { removeOverlay, _overlay } from './Components/header.js'
+import { handleCardClick , _moviePopup, _iframe  } from './Components/movie-popup.js';
 
-const _menuBar = document.querySelector('.menu-bar');
-const _navMenu = document.getElementById('nav-menu');
-const _closeMenuBar = document.querySelector('.close-menu-icon');
-const _overlay = document.getElementById("overlay");
+window.addEventListener('load', () => {
+    const loadingOverlay = document.getElementById('loading-overlay');
+    console.log(loadingOverlay)
+    if (loadingOverlay) {
+        loadingOverlay.style.display = 'none';
+    }
+});
+
 const _headerCarousel = document.querySelector(".header-carousel");
 const _cardsGrid = document.getElementById("cards-grid");
 const _input = document.querySelector(".input");
 const _searchIcon = document.getElementById("search-icon");
-const _moviePopup = document.getElementById("movie-popup");
-const _iframe = _moviePopup.querySelector("iframe");
-const _crewContainer = _moviePopup.querySelector(".crew-container");
+
 let currPage = 1;
 let maxPage = 47000;
 
-_menuBar.addEventListener('click', () => {
-    _navMenu.classList.add('show');
-    _overlay.classList.add("active");
-});
-_closeMenuBar.addEventListener('click', () => {
-    _navMenu.classList.remove('show');
-    _overlay.classList.remove("active");
-});
+fillCardsGrid((await moviesService.getMovies(1)).movies);
+
+_overlay.addEventListener("click", removeAllOverlays);
+window.addEventListener('resize', checkScreenSize);
 _searchIcon.addEventListener("click", handleSearchClick);
 
+function checkScreenSize() {
+    if (window.innerWidth > 1024)
+        removeAllOverlays()
+}
+function removeAllOverlays() { 
+    removeOverlay();
+    _moviePopup.classList.add("invisible");
+    _iframe.src = "";
+}
 async function handleSearchClick() {
     let data;
     if(_input.value === "")
@@ -32,15 +41,6 @@ async function handleSearchClick() {
         data = await moviesService.getMoviesByText(_input.value,currPage);
     fillCardsGrid(data.movies);
     setMaxPage(data.maxPage);
-}
-function setMaxPage(page) {
-    currPage = 1;
-    for (const num of pagiNum) num.textContent = currPage;
-    maxPage = page;
-    if(currPage === maxPage){
-        for(const button of document.querySelectorAll("#pagi-next"))
-            button.style.cursor = "no-drop";
-    }
 }
 
 async function displayCarousel() {
@@ -106,46 +106,19 @@ function fillCardsGrid(movies) {
             element.style.overflow = 'hidden';
         })
         element.addEventListener("click", (e) => handleCardClick(e))
-        async function handleCardClick(e) {
-            const movieId = e.target.closest(".movie-card").dataset.id;
-            _overlay.classList.add("active");
-            const videos = await moviesService.getMovieVideos(movieId);
-            _moviePopup.classList.remove("invisible");
-            _iframe.src = videos[0].key;
-            const crew = await moviesService.getMovieCredits(movieId);
-            const persons = crew.map(element => {
-                return `
-                <div class="person">
-                <img src="${element.profile_path}" width="100px" height="150px"/>
-                <h3>${element.name}</h3>
-                <p>${element.character}</p>
-                </div>
-                `
-            })
-            _crewContainer.innerHTML = persons;
-        }
     });
 }
-fillCardsGrid((await moviesService.getMovies(1)).movies);
-
-
-function removeOverlay() {
-    _overlay.classList.remove('active');
-    _navMenu.classList.remove('show');
-    _moviePopup.classList.add("invisible");
-    _iframe.src = "";
-}
-// removes dark overlay upon resize to desktop
-function checkScreenSize() {
-    if (window.innerWidth > 1024) {
-        removeOverlay();
-    }
-}
-window.addEventListener('resize', checkScreenSize);
-_overlay.addEventListener("click", removeOverlay);
-
 
 // Pagination
+function setMaxPage(page) {
+    currPage = 1;
+    for (const num of pagiNum) num.textContent = currPage;
+    maxPage = page;
+    if(currPage === maxPage){
+        for(const button of document.querySelectorAll("#pagi-next"))
+            button.style.cursor = "no-drop";
+    }
+}
 const pagiNum = document.querySelectorAll(".pagi-num");
 for(const button of document.querySelectorAll("#pagi-prev")){
     button.addEventListener("click", async () => {
@@ -173,3 +146,4 @@ for(const button of document.querySelectorAll("#pagi-next")){
         window.scrollTo({top: _cardsGrid.getBoundingClientRect().top + window.scrollY - 150,behavior: 'smooth'});
     })
 }
+

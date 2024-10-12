@@ -10,39 +10,25 @@
 <body>
     <div class="overlay" id="overlay"></div>
     <!-- Navigation Bar -->
-    <nav>
-            <div class="nav-logo-menu-bar">
-            <div class="logo">
-                <img src="./../assets/tmdb_icon.png" alt="main logo" />
-            </div>
-            <div class="menu-bar" onclick="">
-                <img src="./../assets/icon-menu.png" style="width: 35px;" alt="icon menu"/>
-            </div>
-            </div>
-            <!--** Hidden Mobile **-->
-            <div class="nav-menu" id="nav-menu">
-                <div class="close-menu-icon" onclick="">
-                    <img src="./../assets/icon-close-menu.png" style="width: 50px; height: 40px;" alt="close icon menu" />
-                </div>
-                <!-- Nav Items -->
-                <div class="nav-menu-item-container">
-                    <div class="home nav-item" tabindex="1">
-                        <a href="./index.html">Home</a>
-                    </div>
-                    <div class="genres nav-item" tabindex="2">
-                        <a href="./genres.html">Genres</a>
-                    </div>
-                    <div class="nav-item" tabindex="3">
-                        <a href="./favorites.html">Favorites</a>
-                    </div>
-                    <!-- About -->
-                    <div class="nav-item" tabindex="4">
-                        <a href="./about.html">About</a>
-                    </div>
-                </div>
-            </div>
-            <!--** End Hidden Mobile **-->
-    </nav>
+    <nav></nav>
 
+    <article id="cards-grid">
+        <!-- <div class="movie-card" data-id="917496" style="background-image: url('');">
+            <div class="card-details invisible">
+                <h3>asdsadasd</h3>
+                <p>asdasdasd</p>
+                <p>asdasdasd</p>
+            </div>
+        </div> -->
+    </article>
+
+    <div id="movie-popup" class="invisible">
+        <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+        <div class="crew-container"></div>
+    </div>
+
+    <script type="module" src="./../javascript/Components/header.js"></script>
+    <script type="module" src="./../javascript/Components/movie-popup.js"></script>
+    <script type="module" src="./../javascript/genres.js"></script>
 </body>
 </html>

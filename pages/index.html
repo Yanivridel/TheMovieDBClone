@@ -4,52 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Carousel -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
-
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- My Css  -->
     <link rel="stylesheet" href="./../css/index.css">
-
+    <link rel="stylesheet" href="./../css/search-input.css">
 </head>
 <body>
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
     <div class="overlay" id="overlay"></div>
     <!-- Navigation Bar -->
-    <nav>
-            <div class="nav-logo-menu-bar">
-            <div class="logo">
-                <img src="./../assets/tmdb_icon.png" alt="main logo" />
-            </div>
-            <div class="menu-bar" onclick="">
-                <img src="./../assets/icon-menu.png" style="width: 35px;" alt="icon menu"/>
-            </div>
-            </div>
-            <!--** Hidden Mobile **-->
-            <div class="nav-menu" id="nav-menu">
-                <div class="close-menu-icon" onclick="">
-                    <img src="./../assets/icon-close-menu.png" style="width: 50px; height: 40px;" alt="close icon menu" />
-                </div>
-                <!-- Nav Items -->
-                <div class="nav-menu-item-container">
-                    <div class="home nav-item" tabindex="1">
-                        <a href="./index.html">Home</a>
-                    </div>
-                    <div class="genres nav-item" tabindex="2">
-                        <a href="./genres.html">Genres</a>
-                    </div>
-                    <div class="nav-item" tabindex="3">
-                        <a href="./favorites.html">Favorites</a>
-                    </div>
-                    <!-- About -->
-                    <div class="nav-item" tabindex="4">
-                        <a href="./about.html">About</a>
-                    </div>
-                </div>
-            </div>
-            <!--** End Hidden Mobile **-->
-    </nav>
+    <nav></nav>
     <!-- Images Carousel -->
     <header>
         <div class="header-black-overlay"></div>
@@ -125,19 +96,7 @@
             </div>
             </div>
         </div>
-        <article id="cards-grid">
-            <div class="movie-card" data-id="123124" style="background-image: url('https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg');">
-                <div class="card-details hidden">
-                    <h3>Hello</h3>
-                    <p>2024</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet expedita in ipsam iure incidunt ex provident corporis, voluptatem nisi, eaque pariatur mollitia deserunt molestias facere iste non soluta sed aspernatur.</p>
-                </div>
-            </div>
-            <div class="movie-card"></div>
-            <div class="movie-card"></div>
-            <div class="movie-card"></div>
-            <div class="movie-card"></div>
-        </article>
+        <article id="cards-grid"></article>
     </main>
     <div id="movie-popup" class="invisible">
         <iframe id="videoPlayer" src="" allowfullscreen></iframe>
@@ -157,7 +116,8 @@
         </ul>
     </div>
 
-
-    <script type="module" src="./../javascript/main.js"></script>
+    <script type="module" src="./../javascript/Components/header.js"></script>
+    <script type="module" src="./../javascript/Components/movie-popup.js"></script>
+    <script type="module" src="./../javascript/index.js"></script>
 </body>
 </html>
