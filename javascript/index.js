@@ -2,24 +2,23 @@ import moviesService from './movies.services.js'
 import { removeOverlay, _overlay } from './Components/header.js'
 import { handleCardClick , _moviePopup, _iframe  } from './Components/movie-popup.js';
 
-window.addEventListener('load', () => {
-    const loadingOverlay = document.getElementById('loading-overlay');
-    console.log(loadingOverlay)
-    if (loadingOverlay) {
-        loadingOverlay.style.display = 'none';
-    }
-});
+// Loading
+const loadingOverlay = document.getElementById('loading-overlay');
+if (loadingOverlay)
+    loadingOverlay.style.display = 'none';
 
+// Global Elements
 const _headerCarousel = document.querySelector(".header-carousel");
 const _cardsGrid = document.getElementById("cards-grid");
 const _input = document.querySelector(".input");
 const _searchIcon = document.getElementById("search-icon");
-
 let currPage = 1;
 let maxPage = 47000;
 
+// Default Execution
 fillCardsGrid((await moviesService.getMovies(1)).movies);
 
+// Event Listeners
 _overlay.addEventListener("click", removeAllOverlays);
 window.addEventListener('resize', checkScreenSize);
 _searchIcon.addEventListener("click", handleSearchClick);
