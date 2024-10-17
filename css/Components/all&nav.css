@@ -1,4 +1,6 @@
 /* ALL */
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +12,7 @@ a {
 }
 :root {
     --component-background: #f8f5f0;
-    --dark-blue: #201f24;
+    --dark-blue: #1d0d41;
     --white: white;
     --gray: #c7c3c2;
     --button: #92b6bc;
@@ -29,9 +31,9 @@ a {
 }
 html {
     height: 100%;
-    
 }
 body {
+    position: relative;
     min-height: 100vh;
     font-family: "Epilogue", sans-serif;
     font-size: 18px;

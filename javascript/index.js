@@ -1,21 +1,20 @@
 import moviesService from './movies.services.js'
-import { removeOverlay, _overlay } from './Components/header.js'
+import { removeOverlay, _overlay } from './Components/nav.js'
 import { handleCardClick , _moviePopup, _iframe  } from './Components/movie-popup.js';
-
-// Loading
-const loadingOverlay = document.getElementById('loading-overlay');
-if (loadingOverlay)
-    loadingOverlay.style.display = 'none';
+import './Components/footer.js'
+import './Components/loading.js'
 
 // Global Elements
 const _headerCarousel = document.querySelector(".header-carousel");
 const _cardsGrid = document.getElementById("cards-grid");
 const _input = document.querySelector(".input");
 const _searchIcon = document.getElementById("search-icon");
+const cardHeight = 500;
 let currPage = 1;
 let maxPage = 47000;
 
 // Default Execution
+const favorites = await moviesService.getFavoriteMovies();
 fillCardsGrid((await moviesService.getMovies(1)).movies);
 
 // Event Listeners
@@ -88,14 +87,18 @@ function fillCardsGrid(movies) {
     }
     // Movies Found
     const cards = movies.map(element => {
+        const heart = favorites.some(fav => fav.id === element.id) ? '❤️':'🤍';
         return `
         <div class="movie-card" data-id="${element.id}" style="background-image: url('${element.poster_path}');">
-                <div class="card-details invisible">
-                    <h3>${element.title}</h3>
+            <div class="card-details invisible">
+                <h3>${element.title}</h3>
+                <div class="flex">
                     <p>${element.release_date?.slice(0,4)}</p>
-                    <p>${element.overview}</p>
+                    <span class="heart">${heart}</span>
                 </div>
+                <p>${element.overview}</p>
             </div>
+        </div>
         `;
     }).join('');
     
@@ -105,6 +108,10 @@ function fillCardsGrid(movies) {
         element.addEventListener("mouseover", (e) => {
             element.firstElementChild.classList.remove("invisible");
             element.style.overflow = 'auto';
+
+            const cardDetails = element.querySelector('.card-details');
+            const textHeight = cardDetails.getBoundingClientRect().height;
+            element.style.setProperty('--blur-height', `${Math.max(textHeight + 22, cardHeight)}px`);
         })
         element.addEventListener("mouseout", (e) => {
             element.firstElementChild.classList.add("invisible");

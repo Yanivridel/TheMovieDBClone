@@ -22,7 +22,7 @@ function getMovies(page, genre) {
         const maxPage = data.total_pages;
         const movies = data.results;
         setMovieImages(movies);
-        return  {movies, maxPage};
+        return {movies, maxPage};
     })
     .catch(err => console.log("Error Fetching Movies: " + err));
 }
@@ -102,7 +102,7 @@ function getFavoriteMovies() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+        // console.log(data)
         const movies = data.results;
         setMovieImages(movies);
         return movies;
@@ -128,7 +128,7 @@ function setFavoriteMovie(movieId, action) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+        // console.log(data)
     })
     .catch(err => console.log("Error Fetching Movies: " + err));
 }

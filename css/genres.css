@@ -1,6 +1,7 @@
 @import url('./Components/loading.css');
 @import url('./Components/all&nav.css');
 @import url('./Components/movie-popup.css');
+@import url('./Components/footer.css');
 
 /* Header */
 header img {
@@ -20,6 +21,9 @@ main {
     margin-inline: auto;
     color: var(--white);
     padding: 2rem;
+}
+main h2 {
+    font-size: 2.2rem;
 }
 .slick-list {
     height: 300px;
