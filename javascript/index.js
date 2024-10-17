@@ -81,12 +81,18 @@ $(document).ready(function() {
 });
 
 function fillCardsGrid(movies) {
+    // No movies Found
+    if(!movies || movies.length === 0) {
+        _cardsGrid.innerHTML = '<p class="not-found-err">Unfortunately no movies found...</p>';
+        return;
+    }
+    // Movies Found
     const cards = movies.map(element => {
         return `
         <div class="movie-card" data-id="${element.id}" style="background-image: url('${element.poster_path}');">
                 <div class="card-details invisible">
                     <h3>${element.title}</h3>
-                    <p>${element.release_date.slice(0,4)}</p>
+                    <p>${element.release_date?.slice(0,4)}</p>
                     <p>${element.overview}</p>
                 </div>
             </div>
