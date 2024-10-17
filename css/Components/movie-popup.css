@@ -1,16 +1,21 @@
 /* Movie POPUP */
 #movie-popup {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 4rem;
-    max-width: 90%;
+    
+    max-width: 70%;
     position: fixed;
     transform: translate(-50%,-50%);
     top: 50%;
     left:50%;
     z-index: 9999;
+}
+.relative {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+
 }
 #videoPlayer {
     width: 100%;
@@ -58,4 +63,13 @@
 .crew-container::-webkit-scrollbar-thumb {
     background-color: var(--white);
     border-radius: 10px;
+}
+.close-video-icon {
+    position: absolute;
+    top: 0%;
+    right: -65px;
+}
+.close-video-icon img {
+    width: 80px;
+    height: 60px;
 }

@@ -56,8 +56,13 @@
     </main>
 
     <div id="movie-popup" class="invisible">
-        <iframe id="videoPlayer" src="" allowfullscreen></iframe>
-        <div class="crew-container"></div>
+        <div class="relative">
+            <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+            <div class="crew-container"></div>
+            <div class="close-video-icon" onclick="">
+                <img src="./../assets/icon-close-menu.png" alt="close icon menu" />
+            </div>
+        </div>
     </div>
 
     <script defer type="module" src="./../javascript/genres.js"></script>

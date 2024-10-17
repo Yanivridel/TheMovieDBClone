@@ -4,6 +4,7 @@ import moviesService from '.././movies.services.js'
 const _moviePopup = document.getElementById("movie-popup");
 const _iframe = _moviePopup.querySelector("iframe");
 const _crewContainer = _moviePopup.querySelector(".crew-container");
+const _movieClose = _moviePopup.querySelector(".close-video-icon");
 
 async function handleCardClick(e) {
     const movieId = e.target.closest(".movie-card").dataset.id;
@@ -36,4 +37,4 @@ async function handleCardClick(e) {
     }
 }
 
-export { handleCardClick, _moviePopup, _iframe };
+export { handleCardClick, _moviePopup, _iframe, _movieClose};
