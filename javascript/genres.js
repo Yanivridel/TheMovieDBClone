@@ -1,8 +1,10 @@
-import moviesServices from './movies.services.js';
+import moviesService from './movies.services.js';
 import { removeOverlay, _overlay } from './Components/nav.js'
 import { handleCardClick , _moviePopup, _iframe  } from './Components/movie-popup.js';
 import './Components/footer.js'
 import './Components/loading.js'
+
+const favorites = await moviesService.getFavoriteMovies();
 
 const carouselOptions = {
     centerMode: true,
@@ -14,7 +16,7 @@ const carouselOptions = {
     nextArrow: "<button type='button' class='slick-next'><i class='fa-solid fa-angles-right slide-button'></i></button>",
     responsive:[
         {
-            breakpoint: 1750,
+            breakpoint: 1870,
             settings: {
                 centerMode: true,
                 arrows: true,
@@ -23,7 +25,7 @@ const carouselOptions = {
             }
         },
     {
-        breakpoint: 1400,
+        breakpoint: 1460,
         settings: {
             centerMode: true,
             arrows: true,
@@ -32,7 +34,7 @@ const carouselOptions = {
         }
     },
     {
-        breakpoint: 1000,
+        breakpoint: 1080,
         settings: {
             centerMode: true,
             arrows: true,
@@ -41,7 +43,7 @@ const carouselOptions = {
         }
     },
     {
-        breakpoint: 670,
+        breakpoint: 710,
         settings: {
             centerMode: true,
             arrows: true,
@@ -51,10 +53,38 @@ const carouselOptions = {
     },
     ]
 }
+
 function makeMovieCards(movies) {
     return movies.map(element => {
-        return `<div class="movie-card" data-id="${element.id}"><img src="${element.poster_path}" loading="lazy" /></div>`;
+        const heart = favorites.some(fav => fav.id === element.id) ? '❤️':'🤍';
+        return `
+        <div class="movie-card small-card" data-id="${element.id}">
+            <img src="${element.poster_path}" loading="lazy" />
+            <div class="card-details invisible">
+                <h3>${element.title}</h3>
+                <p>${element.release_date?.slice(0,4)}</p>
+                <span class="heart">${heart}</span>
+            </div>
+        </div>
+        `;
     }).join('');
+}
+function addHoverCardsListen(carousel) {
+    carousel.addEventListener("mouseover", (e) => {
+        if(e.target.closest(".card-details")) {
+            e.target.closest(".card-details").classList.remove("invisible");
+        }
+        if(e.target.matches(".movie-card")) {
+            e.target.querySelector(".card-details").classList.remove("invisible");
+        }
+    })
+    carousel.addEventListener("mouseout", (e) => {
+        if(e.target.matches(".movie-card"))
+            e.target.querySelector(".card-details").classList.add("invisible");
+        else if(e.target.matches(".slick-list") || e.target.matches(".center") ) {
+            for(const detail of e.target.querySelectorAll(".card-details")) detail.classList.add("invisible");
+        }
+    })
 }
 
 _overlay.addEventListener("click", removeAllOverlays);
@@ -66,7 +96,7 @@ function removeAllOverlays() {
 
 // Carousels Display
 async function displayTopRatedCarousel() {
-    const movies = await moviesServices.getTopRatedIL();
+    const movies = await moviesService.getTopRatedIL();
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".top-rated-carousel").innerHTML = carouselItems;
@@ -80,9 +110,10 @@ async function displayTopRatedCarousel() {
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
 async function displayUpcomingCarousel() {
-    const movies = await moviesServices.getUpcomingMovies();
+    const movies = await moviesService.getUpcomingMovies();
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".upcoming-carousel").innerHTML = carouselItems;
@@ -96,9 +127,11 @@ async function displayUpcomingCarousel() {
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
+
 async function displayHorrorCarousel() {
-    const movies = (await moviesServices.getMovies(1, 27)).movies;
+    const movies = (await moviesService.getMovies(1, 27)).movies;
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".horror-carousel").innerHTML = carouselItems;
@@ -111,9 +144,10 @@ async function displayHorrorCarousel() {
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
 async function displayComediesCarousel() {
-    const movies = (await moviesServices.getMovies(1, 35)).movies;
+    const movies = (await moviesService.getMovies(1, 35)).movies;
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".comedies-carousel").innerHTML = carouselItems;
@@ -126,9 +160,10 @@ async function displayComediesCarousel() {
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
 async function displayRomanticCarousel() {
-    const movies = (await moviesServices.getMovies(1, 10749)).movies;
+    const movies = (await moviesService.getMovies(1, 10749)).movies;
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".romantic-carousel").innerHTML = carouselItems;
@@ -141,9 +176,10 @@ async function displayRomanticCarousel() {
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
 async function displayActionCarousel() {
-    const movies = (await moviesServices.getMovies(1, 28)).movies;
+    const movies = (await moviesService.getMovies(1, 28)).movies;
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".action-carousel").innerHTML = carouselItems;
@@ -156,9 +192,10 @@ async function displayActionCarousel() {
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
 async function displayThrillerCarousel() {
-    const movies = (await moviesServices.getMovies(1, 53)).movies;
+    const movies = (await moviesService.getMovies(1, 53)).movies;
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".thriller-carousel").innerHTML = carouselItems;
@@ -171,9 +208,10 @@ async function displayThrillerCarousel() {
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
 async function displayScienceFictionCarousel() {
-    const movies = (await moviesServices.getMovies(1, 878)).movies;
+    const movies = (await moviesService.getMovies(1, 878)).movies;
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".science-fiction-carousel").innerHTML = carouselItems;
@@ -186,9 +224,10 @@ async function displayScienceFictionCarousel() {
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
 async function displayFantasyCarousel() {
-    const movies = (await moviesServices.getMovies(1, 14)).movies;
+    const movies = (await moviesService.getMovies(1, 14)).movies;
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".fantasy-carousel").innerHTML = carouselItems;
@@ -201,9 +240,10 @@ async function displayFantasyCarousel() {
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
 async function displayFamilyCarousel() {
-    const movies = (await moviesServices.getMovies(1, 10751)).movies;
+    const movies = (await moviesService.getMovies(1, 10751)).movies;
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".family-carousel").innerHTML = carouselItems;
@@ -216,9 +256,10 @@ async function displayFamilyCarousel() {
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
 async function displayAdventureCarousel() {
-    const movies = (await moviesServices.getMovies(1, 12)).movies;
+    const movies = (await moviesService.getMovies(1, 12)).movies;
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".adventure-carousel").innerHTML = carouselItems;
@@ -231,9 +272,10 @@ async function displayAdventureCarousel() {
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
 async function displayAnimationCarousel() {
-    const movies = (await moviesServices.getMovies(1, 16)).movies;
+    const movies = (await moviesService.getMovies(1, 16)).movies;
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".animation-carousel").innerHTML = carouselItems;
@@ -246,21 +288,23 @@ async function displayAnimationCarousel() {
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
 async function displayCrimeCarousel() {
-    const movies = (await moviesServices.getMovies(1, 80)).movies;
+    const movies = (await moviesService.getMovies(1, 80)).movies;
     const carouselItems = makeMovieCards(movies);
 
     document.querySelector(".crime-carousel").innerHTML = carouselItems;
 
     const slickElement = $('.crime-carousel');
     slickElement.slick(carouselOptions);
-
+    
     slickElement.on('click', '.slick-slide.slick-active', function(e) {
         const index = $(this).data('slick-index');
         slickElement.slick('slickGoTo', index);
         handleCardClick(e);
     });
+    addHoverCardsListen(slickElement[0]);
 }
 
 function createObserver(selector, callback) {
