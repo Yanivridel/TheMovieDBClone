@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 const express = require('express');
 const path = require('path');
 
@@ -16,7 +16,7 @@ app.get('/api/token', (req, res) => {
     res.json({ bearerToken });
 });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`); 
-});
+
+// app.listen(PORT, () => {
+//     console.log(`Server is running on http://localhost:${PORT}`); 
+// });
