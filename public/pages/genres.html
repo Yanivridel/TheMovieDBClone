@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMDB Clone</title>
+    <link rel="icon" href="./../assets/TMDB-icon.png">
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Slick library -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./../css/genres.css">
+</head>
+<body>
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <!-- Navigation Bar -->
+    <nav></nav>
+    <header>
+        <img src="./../assets/genre-movies-background.png" alt="header"/>
+    </header>
+    <main id="carousel-main">
+        <h2>Top Rated In Israel:</h2>
+        <div class="top-rated-carousel center"></div>
+        <h2>Upcoming Movies:</h2>
+        <div class="upcoming-carousel center"></div>
+        <h2>Horror Movies:</h2>
+        <div class="horror-carousel center"></div>
+        <h2>Comedies:</h2>
+        <div class="comedies-carousel center"></div>
+        <h2>Romantic Movies:</h2>
+        <div class="romantic-carousel center"></div>
+        <h2>Action Movies:</h2>
+        <div class="action-carousel center"></div>
+        <h2>Thriller Movies:</h2>
+        <div class="thriller-carousel center"></div>
+        <h2>Science Fiction:</h2>
+        <div class="science-fiction-carousel center"></div>
+        <h2>Fantasy Movies:</h2>
+        <div class="fantasy-carousel center"></div>
+        <h2>Family Movies:</h2>
+        <div class="family-carousel center"></div>
+        <h2>Adventure Movies:</h2>
+        <div class="adventure-carousel center"></div>
+        <h2>Animation Movies:</h2>
+        <div class="animation-carousel center"></div>
+        <h2>Crime Movies:</h2>
+        <div class="crime-carousel center"></div>
+    </main>
+
+    <div id="movie-popup" class="invisible">
+        <div class="relative">
+            <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+            <div class="crew-container"></div>
+            <div class="close-video-icon" onclick="">
+                <img src="./../assets/icon-close-menu.png" alt="close icon menu" />
+            </div>
+        </div>
+    </div>
+
+    <script defer type="module" src="./../javascript/genres.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+.movie-card {
+    width: 300px;
+    height: 500px;
+    background-color: var(--purple);
+    border-radius: var(--radius);
+    background-size: cover;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+                0 1px 3px rgba(0, 0, 0, 0.08);
+    padding: 1.3rem;
+    cursor: pointer;
+}
+.flex {
+    display: flex;
+    gap: 10px;
+    span {
+        font-size: 25px;
+        margin-top: -10px;
+    }
+}
+.movie-card::before {
+    content: '';
+    position: absolute;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: backdrop-filter 0.3s ease;
+    z-index: 1;
+}
+.movie-card:hover::before {
+    height: var(--blur-height);
+    backdrop-filter: blur(10px);
+}
+.movie-card .card-details {
+    color: var(--white);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 1;
+
+    h3 {
+        font-size: 2rem;
+    }
+    p {
+        font-weight: 500;
+        line-height: 1.4;
+        max-width: 85%;
+    }
+}
+.movie-card::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+.movie-card::-webkit-scrollbar-thumb {
+    background-color: var(--light-purple);
+    border-radius: 10px;
+}
+/* Small Card */
+.movie-card.small-card {
+    height: auto;
+    width: auto;
+    box-shadow: none;
+}
+.movie-card.small-card .card-details {
+    align-items: center;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+}

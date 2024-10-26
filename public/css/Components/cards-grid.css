@@ -1,0 +1,19 @@
+.main-container {
+    position: relative;
+    max-width: var(--maxWidth);
+    margin-inline: auto;
+}
+#cards-grid {
+    padding: 2rem 4rem 0;
+    padding-bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    justify-content: center;
+    justify-items: center;
+    min-height: 700px;
+
+    .not-found-err {
+        color: white;
+    }
+}

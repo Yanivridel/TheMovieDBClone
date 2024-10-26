@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMDB Clone</title>
+    <link rel="icon" href="./../assets/TMDB-icon.png">
+    <!-- Carousel -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- My Css -->
+    <link rel="stylesheet" href="./../css/favorites.css">
+</head>
+<body>
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <!-- Navigation Bar -->
+    <nav></nav>
+    <header>
+        <img src="./../assets/fav-movies.png" alt="header"/>
+    </header>
+    <div class="pagination-container">
+        <ul class="pagination">
+            <li>
+                <a id="pagi-prev" class="pagi-button">Prev</a>
+            </li>
+            <li>
+                <a class="pagi-num">1</a>
+            </li>
+            <li>
+                <a id="pagi-next" class="pagi-button">Next</a>
+            </li>
+        </ul>
+    </div>
+    <main class="main-container">
+        <article id="cards-grid"></article>
+    </main>
+    <div id="movie-popup" class="invisible">
+        <div class="relative">
+            <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+            <div class="crew-container"></div>
+            <div class="close-video-icon" onclick="">
+                <img src="./../assets/icon-close-menu.png" alt="close icon menu" />
+            </div>
+        </div>
+    </div>
+    <div class="pagination-container">
+        <ul class="pagination">
+            <li>
+                <a id="pagi-prev" class="pagi-button">Prev</a>
+            </li>
+            <li>
+                <a class="pagi-num">1</a>
+            </li>
+            <li>
+                <a id="pagi-next" class="pagi-button">Next</a>
+            </li>
+        </ul>
+    </div>
+
+    <script defer type="module" src="./../javascript/favorites.js"></script>
+</body>
+</html>

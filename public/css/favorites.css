@@ -1,0 +1,14 @@
+@import url('./Components/all&nav.css');
+@import url('./Components/loading.css');
+@import url('./Components/movie-popup.css');
+@import url('./Components/movie-card.css');
+@import url('./Components/footer.css');
+@import url('./Components/pagination.css');
+@import url('./Components/cards-grid.css');
+
+/* Header */
+header img {
+    width: 100%;
+    max-height: 600px;
+    object-fit: contain;
+}
