@@ -6,7 +6,6 @@ async function initialize() {
         const response = await fetch('/api/token');
         const data = await response.json();
         bearerToken = data.bearerToken;
-        console.log(bearerToken)
     } catch (error) {
         console.error('Error initializing application:', error);
     }

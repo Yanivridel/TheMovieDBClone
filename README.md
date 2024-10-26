@@ -14,4 +14,4 @@ A simple clone of [The Movie Database (TMDB)](https://www.themoviedb.org/) using
 
 ## Live Server
 
-A live demo of the project can be found [here](https://yanivridel.github.io/TheMovieDBClone/)
+A live demo of the project can be found [here](https://the-movie-db-clone-azmjmjej9-yanivs-projects-d091535c.vercel.app/pages/index.html)

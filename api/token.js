@@ -1,3 +1,4 @@
+// FOR VERCEL ROUTES
 export default function handler(req, res) {
     const bearerToken = process.env.bearerToken; 
     if (!bearerToken) {
