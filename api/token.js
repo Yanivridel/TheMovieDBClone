@@ -3,5 +3,5 @@ export default function handler(req, res) {
     if (!bearerToken) {
         return res.status(500).json({ error: 'Bearer token is not set' });
     }
-    res.status(200).json({ bearerToken }); // Send the token as JSON
+    res.status(200).json({ bearerToken });
 }
