@@ -1,4 +1,4 @@
-# TMDB Clone
+# [TMDB Clone](https://the-movie-db-clone-azmjmjej9-yanivs-projects-d091535c.vercel.app/pages/index.html)
 
 A simple clone of [The Movie Database (TMDB)](https://www.themoviedb.org/) using pure HTML, CSS, and JavaScript. This project allows users to search for movies, view top-rated movies, upcoming releases, and browse movies by genre. Users can like and save movies to their favorites, remove them from their favorites, and see a list of all liked movies. It uses the TMDB API to fetch movie data.
 
